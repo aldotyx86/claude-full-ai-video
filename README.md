@@ -15,7 +15,7 @@ tanpa rekam sama sekali:
 Salin folder ini ke folder skill Claude Code:
 
 ```bash
-git clone https://github.com/<username>/claude-full-ai-video.git ~/.claude/skills/claude-full-ai-video
+git clone https://github.com/aldotyx86/claude-full-ai-video.git ~/.claude/skills/claude-full-ai-video
 ```
 
 (atau ke `.claude/skills/claude-full-ai-video` di dalam proyek Remotion-mu)
