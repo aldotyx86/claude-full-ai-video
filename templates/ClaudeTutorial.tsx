@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { CapWord, GradientText, HookTitle, INTER, KaraokeCaption, SoftVignette, StepCard, StepPill, T, Waveform } from "./GlassGuide";
-import { Background, Bubble, Confetti, ORANGE, PixelBuddy, glass } from "./ClaudeAIVideo";
+import { Background, Bubble, Confetti, CreatorBadge, ORANGE, PixelBuddy, glass } from "./ClaudeAIVideo";
 import words from "./data/claude_tutorial.words.json";
 
 export const TUT_FPS = 30;
@@ -291,6 +291,7 @@ export const ClaudeTutorial: React.FC = () => {
       ))}
       {step ? <StepPill label="Video full AI" index={step.n} total={STEPS.length} /> : null}
       <KaraokeCaption line={line} />
+      <CreatorBadge />
     </AbsoluteFill>
   );
 };

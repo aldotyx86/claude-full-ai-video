@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { CapWord, GradientText, HookTitle, INTER, KaraokeCaption, SoftVignette, StepPill, T } from "./GlassGuide";
 import words from "./data/claude_vo.words.json";
 
@@ -124,6 +124,80 @@ export const PixelBuddy: React.FC<{ x: number; y: number; px?: number; mood?: "h
           />
         </div>
       ) : null}
+    </div>
+  );
+};
+
+// ---------- Badge kreator: foto bulat kecil + tangan menunjuk ke video ----------
+// Foto 1254×1254, wajah sekitar (640, 430). Ukuran kecil di pojok kiri bawah, di bawah caption.
+export const CreatorBadge: React.FC<{ start?: number; label?: string; src?: string }> = ({
+  start = 10,
+  label = "@username",
+  src = "raw/creator.png",
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame - start;
+  if (t < 0) return null;
+  const size = 150;
+  const k = size / 340; // skala foto supaya wajah mengisi lingkaran
+  const pop = spring({ frame: t, fps, config: T.pop });
+  const bob = Math.sin(frame * 0.12) * 5;
+  // tangan: dorongan menunjuk berulang
+  const jab = Math.max(0, Math.sin(frame * 0.25)) * 14;
+  // label muncul tiap ±8 dtk selama ±3 dtk
+  const cyc = t % 240;
+  const lab = interpolate(cyc, [0, 10, 80, 92], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  return (
+    <div style={{ position: "absolute", left: 56, top: 1650 + bob, transform: `scale(${pop})`, transformOrigin: "0% 100%" }}>
+      <div
+        style={{
+          width: size,
+          height: size,
+          borderRadius: "50%",
+          padding: 5,
+          backgroundImage: `linear-gradient(135deg, ${ORANGE}, #FF5CA8, #B45CFF)`,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+        }}
+      >
+        <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", position: "relative", backgroundColor: "#111" }}>
+          <Img
+            src={staticFile(src)}
+            style={{ position: "absolute", width: 1254 * k, height: 1254 * k, left: (size - 10) / 2 - 640 * k, top: (size - 10) / 2 - 430 * k }}
+          />
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: size - 22 + jab,
+          top: -12 - jab * 0.6,
+          fontSize: 64,
+          transform: "rotate(-35deg)",
+          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.5))",
+        }}
+      >
+        👉
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: size + 60,
+          top: 58,
+          ...glass,
+          borderRadius: 999,
+          padding: "10px 22px",
+          whiteSpace: "nowrap",
+          fontFamily: INTER,
+          fontSize: 28,
+          fontWeight: 700,
+          color: T.white,
+          opacity: lab,
+          transform: `translateX(${(1 - lab) * -16}px)`,
+        }}
+      >
+        {label}
+      </div>
     </div>
   );
 };
@@ -407,6 +481,7 @@ export const ClaudeAIVideo: React.FC = () => {
       <SoftVignette />
       {frame >= S_TERM ? <StepPill label="Video full AI" index={stepIdx} total={3} /> : null}
       <KaraokeCaption line={line} />
+      <CreatorBadge />
     </AbsoluteFill>
   );
 };
