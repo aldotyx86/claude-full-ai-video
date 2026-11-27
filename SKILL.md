@@ -63,6 +63,13 @@ Cek 6–9 frame (gabungkan dengan `ffmpeg ... xstack` jadi satu lembar) sebelum 
 perlu dibetulkan: judul raksasa terlalu lebar (maks ±8 karakter untuk `hero`), elemen CTA bertumpuk,
 caption terpotong. Kirim hasilnya ke user.
 
+## Gaya alternatif: Creator Sticker
+Bila user minta video "pakai mukaku", "gaya algo trading", atau ada foto kreator, ikuti
+`references/README.md` dan contoh `references/algo_trading.mp4`: latar cokelat hangat, label bagian
+monospace `• 01 / 05 — JUDUL`, panel konten di atas, caption di tengah, dan stiker kreator di bawah dengan
+maskot di kepala. Pilih pose dari `references/creator-poses/` sesuai isi kalimat (tabel di README referensi).
+
 ## Catatan
 - Maskot piksel adalah karakter orisinal bergaya retro, bukan aset resmi Anthropic.
+- Foto di `references/creator-poses/` adalah foto pemilik repo; jangan dipakai untuk kreator lain.
 - Jangan pakai footage/suara orang lain tanpa izin; semua aset di alur ini dihasilkan AI atau kode.

@@ -43,6 +43,9 @@ Claude akan menulis naskah, membuat voiceover, mentranskrip caption, merakit kom
 | `templates/GlassGuide.tsx` | Komponen gaya Glass Guide (judul, kartu, pill, caption karaoke) |
 | `templates/ClaudeAIVideo.tsx` | Video pendek + komponen maskot (`PixelBuddy`, `Bubble`, `Background`, `Confetti`) |
 | `templates/ClaudeTutorial.tsx` | Tutorial 6 langkah + CTA "Komen …" |
+| `references/README.md` | Panduan gaya: Glass Guide & Creator Sticker |
+| `references/algo_trading.mp4` | Contoh video jadi gaya Creator Sticker (+ lembar frame `.png`) |
+| `references/creator-poses/` | 9 pose stiker kreator (pikir, tunjuk, jempol, kaget, rayakan) |
 
 Maskot piksel adalah karakter orisinal bergaya retro, bukan aset resmi Anthropic.
 
